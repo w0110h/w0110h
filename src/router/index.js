@@ -1,3 +1,10 @@
+/*
+ * @Author: wjf
+ * @Date: 2022-08-03 10:32:45
+ * @LastEditTime: 2022-08-15 17:06:31
+ * @LastEditors: wjf
+ * @Description:
+ */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
@@ -16,7 +23,29 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import('../views/AboutView.vue')
+  },
+  {
+    path: '/watchView',
+    name: 'watchView',
+    component: () => import('../views/watchView.vue')
+  },
+  {
+    path: '/lifeFun',
+    name: 'lifeFun',
+    component: () => import('../views/lifeFun.vue')
+  },
+  {
+    // ../views/modul/home/TopNav.vue
+    path: '/TopNav',
+    name: 'TopNav',
+    component: () => import('../views/modul/home/TopNav.vue')
+  },
+  {
+    // ../views/modul/home/TopNav.vue
+    path: '/valueTrans',
+    name: 'valueTrans',
+    component: () => import('../views/modul/valueTrans/parent.vue')
   }
 ]
 
