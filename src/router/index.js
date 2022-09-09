@@ -1,7 +1,7 @@
 /*
  * @Author: wjf
  * @Date: 2022-08-03 10:32:45
- * @LastEditTime: 2022-08-15 17:06:31
+ * @LastEditTime: 2022-09-09 14:10:06
  * @LastEditors: wjf
  * @Description:
  */
@@ -36,16 +36,39 @@ const routes = [
     component: () => import('../views/lifeFun.vue')
   },
   {
-    // ../views/modul/home/TopNav.vue
     path: '/TopNav',
     name: 'TopNav',
     component: () => import('../views/modul/home/TopNav.vue')
   },
   {
-    // ../views/modul/home/TopNav.vue
     path: '/valueTrans',
     name: 'valueTrans',
     component: () => import('../views/modul/valueTrans/parent.vue')
+  },
+  {
+    path: '/slotDemo',
+    name: 'slotDemo',
+    component: () => import('../views/modul/slotDemo/index.vue')
+  },
+  {
+    path: '/customButton',
+    name: 'customButton',
+    component: () => import('../views/modul/button/index.vue')
+  },
+  {
+    path: '/reallyTopNav',
+    name: 'reallyTopNav',
+    component: () => import('../views/modul/topNav/index.vue')
+  },
+  {
+    path: '/javaScriptPretice',
+    name: 'javaScriptPretice',
+    component: () => import('../views/modul/javaScriptPretice/index.vue')
+  },
+  {
+    path: '/juejin',
+    name: 'juejin',
+    component: () => import('../views/modul/juejin/index.vue')
   }
 ]
 

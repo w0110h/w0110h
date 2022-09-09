@@ -1,7 +1,7 @@
 <!--
  * @Author: wjf
  * @Date: 2022-08-03 10:32:45
- * @LastEditTime: 2022-08-15 17:07:20
+ * @LastEditTime: 2022-09-09 13:31:56
  * @LastEditors: wjf
  * @Description:
 -->
@@ -20,6 +20,21 @@
         </div>
         <div class="goButton">
           <el-button @click="goValueTrans">传值</el-button>
+        </div>
+        <div class="goButton">
+          <el-button @click="goslotDemo">插槽</el-button>
+        </div>
+        <div class="goButton">
+          <el-button @click="gotopNav">顶部导航栏</el-button>
+        </div>
+         <div class="goButton">
+          <el-button @click="gobutton">自定义按钮</el-button>
+        </div>
+         <div class="goButton">
+          <el-button @click="goJavaScript">goJavaScript</el-button>
+        </div>
+         <div class="goButton">
+          <el-button @click="gojuejin">掘金</el-button>
         </div>
       </div>
       {{'这里是插值表达式'}}
@@ -137,6 +152,33 @@ export default {
     goValueTrans () {
       this.$router.push({
         name: 'valueTrans'
+      })
+    },
+    goslotDemo () {
+      this.$router.push({
+        name: 'slotDemo'
+      })
+    },
+    gotopNav () {
+      this.$router.push({
+        name: 'reallyTopNav'
+      })
+    },
+    gobutton () {
+      this.$router.push({
+        name: 'customButton'
+      })
+    },
+    // goJavaScript
+    goJavaScript () {
+      this.$router.push({
+        name: 'javaScriptPretice'
+      })
+    },
+    // gojuejin
+    gojuejin () {
+      this.$router.push({
+        name: 'juejin'
       })
     }
   }

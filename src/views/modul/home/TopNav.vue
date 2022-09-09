@@ -1,7 +1,7 @@
 <!--
  * @Author: wjf
  * @Date: 2022-08-12 13:25:06
- * @LastEditTime: 2022-08-15 17:41:59
+ * @LastEditTime: 2022-08-25 09:48:38
  * @LastEditors: wjf
  * @Description:
 -->
@@ -23,6 +23,12 @@
         <el-table-column prop="num"
                          label="数量"
                          width="180">
+                         <template slot-scope="scope">
+                          <!-- <button key=""> </button> -->
+                          <el-button @click="reduce(scope.row)" size="mini" :disabled='scope.row.num <= 0'>-</el-button>
+                                   {{scope.row.num}}
+                          <el-button @click="add(scope.row)" size="mini">+</el-button>
+                         </template>
         </el-table-column>
         <el-table-column prop="price"
                          label="价格">
@@ -30,14 +36,65 @@
       </el-table>
     </div>
     <div>总计{{priceSum}}元</div>
+     <div class="tabs-wrap" style="width:50%">
+      <el-tabs
+        class="tab-select"
+        v-model="activeName"
+        @tab-click="changeTab"
+      >
+        <el-tab-pane
+          v-for="(item, key) in tabSelectOptions"
+          :key="key"
+          :label="item.label || item.value"
+          :name="item.code"
+        >
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+    <div class="block">
+    <span class="demonstration">完整功能</span>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage4"
+      :page-sizes="[100, 200, 300, 400]"
+      :page-size="100"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="400">
+    </el-pagination>
+  </div>
+    <el-form ref="form" :model="form" label-width="80px">
+       <el-form-item label="名称" v-if="activeName === 'tab1'">
+      <el-input v-if="activeName === 'tab1'" type='text' v-model="form.name">
+      </el-input>
+      </el-form-item>
+      <el-form-item label="名称" v-if="activeName === 'tab2'">
+      <el-input v-if="activeName === 'tab2'" type='text' v-model="form2.name"></el-input>
+      </el-form-item>
+
+    </el-form>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
+      activeName: 'tab1',
+      disabled: false,
+      tabSelectOptions: [
+        { label: 'tab1', code: 'tab1' },
+        { label: 'tab2', code: 'tab2' }
+      ],
+
       horizontal: 'value',
       activeIndex: '1',
+      currentPage4: 4,
+      form: {
+        name: ''
+      },
+      form2: {
+        name: ''
+      },
       dataList: [
         { name: '香蕉', num: 12, price: 6 },
         { name: '苹果', num: 8, price: 9 },
@@ -61,7 +118,37 @@ export default {
       })
     }
   },
+  mounted () {
+    this.getDataList()
+  },
+  watch: {
+  },
   methods: {
+    //     test
+    // POST /test
+    // 接口ID：35026033
+    // 接口地址：https://mock.apifox.cn/m1/1471061-0-default/test
+    getDataList () {
+      // eslint-disable-next-line quotes
+      this.$http.post(`https://mock.apifox.cn/m1/1471061-0-default/test`)
+        .then(({ data: res }) => {
+          console.log(res)
+        })
+    },
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
+    },
+    reduce (e) {
+      e.num--
+    },
+    add (e) {
+      e.num++
+    },
+    changeTab () {
+    },
     goBack () {
       this.$router.push({
         name: 'home'
